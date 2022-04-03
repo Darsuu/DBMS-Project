@@ -1,3 +1,3 @@
 
 def cow():
-    print("meow")
+    print("moo")
