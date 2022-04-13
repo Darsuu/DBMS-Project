@@ -1,11 +1,12 @@
 #stores all the routes the user can go to
-from datetime import datetime
+import datetime
 from flask import Blueprint, flash, render_template, request
 
 import sqlite3 as sql
 import random
 
 views = Blueprint('views', __name__)
+
 
 
 @views.route('/')
@@ -151,10 +152,8 @@ def changePat():
                 cur.execute("begin")
                 try:
                     num = request.form.get("changebox")
-                    cur.execute("Select * from MEDICALRECORDS where PatID = (SELECT ID FROM PATIENT WHERE PhoneNo = ?)", (num))
-                    record = cur.fetchone()
-                    print(record)
-                    cur.execute("UPDATE MEDICALRECORDS SET DATE = ? WHERE PatID = (SELECT ID FROM PATIENT WHERE PhoneNo = ?)", ("20201703", num))
+                    time = datetime.datetime.now()
+                    cur.execute("UPDATE MEDICALRECORDS SET DATE = ? WHERE PatID = (SELECT ID FROM PATIENT WHERE PhoneNo = ?)", (time, num))
                     cur.execute("commit")
                 except:
                     cur.execute("rollback")
