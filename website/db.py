@@ -11,10 +11,11 @@ try:
     cur.execute("""DROP TABLE IF EXISTS PATIENT""")
     cur.execute("""DROP TABLE IF EXISTS DOCTOR""")
     cur.execute("""DROP TABLE IF EXISTS PATIENTAPPOINTMENTS""")
-    cur.execute("""DROP TABLE IF EXISTS MEDICALRECORD""")
+    cur.execute("""DROP TABLE IF EXISTS MEDICALRECORDS""")
     cur.execute("""DROP VIEW IF EXISTS PATIENT_VIEW""")
     cur.execute("""DROP VIEW IF EXISTS DOCTOR_VIEW""")
     cur.execute("""DROP VIEW IF EXISTS APPOINTMENT_VIEW""")
+    cur.execute("""DROP VIEW IF EXISTS MEDICALRECORD_VIEW""")
     cur.execute("commit")
 except:
     cur.execute("rollback")
@@ -42,16 +43,16 @@ patappt_table = """ CREATE TABLE PATIENTAPPOINTMENTS (
             PRIMARY KEY (PatID, DocID)
         );""" 
 
-medrec_table = """ CREATE TABLE MEDICALRECORD (
+medrec_table = """ CREATE TABLE MEDICALRECORDS (
             PatID INTEGER,
             DocID INTEGER,
             Ailments VARCHAR(255),
             Medication VARCHAR(255),
             Diagnosis VARCHAR(255),
-            Date TEXT,
+            Date TEXT DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (PatID) references PATIENT(ID),
             FOREIGN KEY (DocID) references DOCTOR(ID),
-            PRIMARY KEY (PatID, DocID)
+            PRIMARY KEY (PatID, Date)
         );""" 
 
 # ALL INSERTING VALUE QUERIES       
