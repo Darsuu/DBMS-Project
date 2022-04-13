@@ -61,15 +61,18 @@ SELECT * FROM DOCTOR where (PatNo <= 5 AND PatNo <> 0) order by ID DESC LIMIT 1;
 Select * from APPOINTMENT_VIEW;
 Select * from MEDICALRECORD_VIEW;
 Select * from MEDICALRECORDS where PatID = (SELECT ID FROM PATIENT WHERE PhoneNo = ?);
+Select * from DOCTOR WHERE ID = (Select DocID from PATIENTAPPOINTMENTS as pt, PATIENT as p where (p.ID = pt.PatID AND p.PhoneNo = ?));            
 
-
+UPDATE DOCTOR SET PatNo = ? WHERE ID = (Select DocID from PATIENTAPPOINTMENTS as pt, PATIENT as p where (p.ID = pt.PatID AND p.PhoneNo = ?))
 UPDATE DOCTOR SET PatNo = ? where ID = ?;
 UPDATE MEDICALRECORDS SET DATE = ? WHERE PatID = (SELECT ID FROM PATIENT WHERE PhoneNo = ?);
-                   
+
+DELETE FROM PATIENT WHERE PhoneNo = ?
 
 -- commented out the code to drop tables
 
 /* 
+
 DROP TABLE IF EXISTS DOCTOR
 DROP TABLE IF EXISTS PATIENTAPPOINTMENTS
 DROP TABLE IF EXISTS MEDICALRECORDS
