@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Appointment Table {% endblock %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead class = "thead-dark">
+        <tr>
+            <th scope = "col">#</th>
+            <th scope = "col">Patient ID</th>
+            <th scope = "col">Doctor ID</th>
+            <th scope = "col">Symptoms</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+        <tr>
+            <th scope = "row">#</th>
+            <td>{{row['PatID']}}</td>
+            <td>{{row['DocID']}}</td>
+            <td>{{row['Symptoms']}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
