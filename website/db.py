@@ -49,7 +49,7 @@ medrec_table = """ CREATE TABLE MEDICALRECORDS (
             Ailments VARCHAR(255),
             Medication VARCHAR(255),
             Diagnosis VARCHAR(255),
-            Date TEXT DEFAULT CURRENT_TIMESTAMP,
+            Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (PatID) references PATIENT(ID),
             FOREIGN KEY (DocID) references DOCTOR(ID),
             PRIMARY KEY (PatID, Date)
