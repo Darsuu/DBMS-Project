@@ -3,20 +3,20 @@
 
 {% block content %}
 
-<h5 class = "bg-info"> You can reschedule by pressing the update button. You can cancel appointment by pressing delete button</h5>
-<form action = "{{url_for('views.changePat')}}" method="POST">
-    <div class = "form-group">
-        <label for = "Pname"> Enter Patient Name <input type = "text" name = "randbox" id = "Pname"> </label>
-    </div>
-    <div class = "form-group">
+<h5 class = "bg-info" style="padding:10px; text-align: center;"> You can reschedule by pressing the update button. You can cancel appointment by pressing delete button</h5>
+<form action = "{{url_for('views.changePat')}}" method="POST" style="padding:10px; align-items: center; text-align: center; height: 400px;">
+    <div class = "form-group" >
         <label for = "Pnum"> Enter PhoneNo <input type = "text" name = "changebox" id = "Pnum" style = "margin: 10px"> </label>
     </div>
-    <div class = "form-group">
-        <input type="submit" value = "Update" class="btn btn-primary"> <br/>
+    <div style="display: flex; align-items: center; justify-items: center; justify-content: center; justify-content: center; align-items: center;">
+        <div class = "form-group"  style="display: inline-flex; padding:0 0 10px 10px ;" >
+            <input style=" border: 0;" type="submit" value = "Update" class="btn btn-primary"> <br/>
+        </div>
+        <div class = "form-group" style="display: inline-flex;  padding:0 0 10px 10px" >
+            <input style="background-color: red; border: 0;"type="submit" value = "Delete" class="btn btn-primary" formaction="{{url_for('views.deletePat')}}">
+        </div>
     </div>
-    <div class = "form-group">
-        <input type="submit" value = "Delete" class="btn btn-primary">
-    </div>
-  </form>
+    
+</form>
 
 {% endblock %}

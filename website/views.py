@@ -164,3 +164,30 @@ def changePat():
         finally:
             conn.close()
             return render_template("home.html")
+
+@views.route('/views.deletePat', methods = ['POST', 'GET'])
+def deletePat():
+    if request.method == 'POST':
+        try:
+            with sql.connect("hospital.db") as conn:
+                cur = conn.cursor()
+                conn.row_factory = sql.Row
+                cur.execute("begin")
+                try:
+                    num = request.form.get("changebox")
+                    cur.execute("Select * from DOCTOR WHERE ID = (Select DocID from PATIENTAPPOINTMENTS as pt, PATIENT as p where (p.ID = pt.PatID AND p.PhoneNo = ?))", (num,))
+                    record = cur.fetchone()
+                    print(record)
+                    cur.execute("UPDATE DOCTOR SET PatNo = ? WHERE ID = (Select DocID from PATIENTAPPOINTMENTS as pt, PATIENT as p where (p.ID = pt.PatID AND p.PhoneNo = ?))", (record[3]-1, num))
+                    cur.execute("DELETE FROM PATIENT WHERE PhoneNo = ?", (num, ))
+                    cur.execute("commit")
+                except Exception as e:
+                    print(e)
+                    cur.execute("rollback")
+            conn.commit()
+        except:
+            conn.rollback()
+
+        finally:
+            conn.close()
+            return render_template("home.html")
