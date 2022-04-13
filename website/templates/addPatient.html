@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Add Patient {% endblock %}
+
+{% block content %}
+ <center><h3 class = "bg-primary">Add Patient</h3></center>
+
+ <form action = "{{url_for('views.addrec')}}" method="POST">
+    <div class="form-group">
+      <label for="Patient_Name">Name</label>
+      <input type="text" class="form-control" id="Patient_Name" name = "Patient_Name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+        <label for="Patient_PhoneNo">PhoneNo</label>
+        <input type="text" class="form-control" id="Patient_PhoneNo" name ="Patient_PhoneNo" placeholder="Enter PhoneNo">
+      </div>
+    <input type="submit" value = "Submit" class="btn btn-primary">
+  </form>
+  
+{% endblock %}

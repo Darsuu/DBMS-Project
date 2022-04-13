@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Doctor Table {% endblock %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead class = "thead-dark">
+        <tr>
+            <th scope = "col">#</th>
+            <th scope = "col">Doctor Name</th>
+            <th scope = "col">Doctor ID</th>
+            <th scope = "col">Department</th>
+            <th scope = "col">Patient Number</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+        <tr>
+            <th scope = "row">#</th>
+            <td>{{row['Name']}}</td>
+            <td>{{row['ID']}}</td>
+            <td>{{row['Dept']}}</td>
+            <td>{{row['PatNo']}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
